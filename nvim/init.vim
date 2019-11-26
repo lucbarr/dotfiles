@@ -7,7 +7,11 @@ Plug 'w0rp/ale'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 Plug 'Shougo/deoplete.nvim'
-Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+Plug 'tpope/vim-fugitive'
 
 Plug 'scrooloose/nerdtree'
 
@@ -33,9 +37,9 @@ let g:go_def_mode = 'gopls'
 
 
 " ctrlp
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 'ra'
+"let g:ctrlp_map = '<c-p>'
+"let g:ctrlp_cmd = 'CtrlP'
+"let g:ctrlp_working_path_mode = 'ra'
 
 " ale
 let g:ale_sign_error = '⤫'
@@ -50,8 +54,23 @@ endif
 
 let mapleader = ","
 
+" fzf
+map <c-p> :FZF<CR>
+map <Leader>f :Ag<CR>
+
+" inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
+            " \ "\<lt>C-n>" :
+            " \ "\<lt>C-x>\<lt>C-o><c-r>=pumvisible() ?" .
+            " \ "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" .
+            " \ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
+" imap <C-@> <C-Space>
+
 map <Leader>n :NERDTreeToggle<CR>
-au FileType go nmap <F12> <Plug>(go-def)
+map <c-n> :NERDTreeToggle<CR>
+au FileType go nmap <c-f> <Plug>(go-def)
+au FileType go nmap <c-k> <Plug>(go-def)
+au FileType go nmap <c-j> <C-t>
+
 
 set number
 set relativenumber
