@@ -96,7 +96,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias docgo="godoc -http=:6060"
-alias todo="vim ~/Documents/TODO.md"
+alias todo="nvim ~/Documents/TODO.md"
 alias gclean="git clean -fd"
 alias getip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | head -n 1"
 alias imember="history | grep "
@@ -109,5 +109,18 @@ gcheck() { git checkout  $(git status | grep "$@" | sed 's/modified:  //g' | sed
 logme() { a=$1; git log | head -n $((a*5))  | awk '/Author: Luciano Barreira/{nr[NR+1]; nr[NR+3]}; NR in nr' }
 export GOPATH=$HOME/go
 export NVM_DIR="$HOME/.nvm"
-export MYNAME="Luciano Barreira"
-. "/usr/local/opt/nvm/nvm.sh"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="/usr/local/opt/mongodb-community@4.0/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH=$PATH:$GOPATH/bin
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+export ODINPATH=$HOME/odin
+alias odin="$ODINPATH/odin"
+export PATH="$PATH:$ODINPATH"
+
+export KUBE_EDITOR="nvim"
